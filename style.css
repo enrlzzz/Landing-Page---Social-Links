@@ -1,0 +1,145 @@
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── PAGE ── */
+html, body {
+  height: 100%;
+  background: #F0EFEA;   /* warm off-white — matches the image */
+  font-family: 'Barlow', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Subtle grain texture overlay */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0;
+}
+
+/* ── CENTER CONTAINER ── */
+.stage {
+  position: relative; z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0;
+  /* entry animation */
+  animation: fadeIn .9s ease both;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── TAG DECORATION ── */
+.tag-top {
+  font-family: 'Barlow', sans-serif;
+  font-size: .78rem;
+  font-weight: 400;
+  letter-spacing: .12em;
+  color: #888;
+  margin-bottom: 10px;
+  opacity: 0;
+  animation: fadeIn .7s ease .15s both;
+}
+
+/* ── MAIN TITLE ── */
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.8rem, 11vw, 7.5rem);
+  line-height: 1;
+  letter-spacing: .025em;
+  color: #1A1A1A;
+  user-select: none;
+  opacity: 0;
+  animation: fadeIn .8s ease .28s both;
+}
+
+/* The </  > brackets in a slightly lighter weight */
+h1 .bracket {
+  color: #1A1A1A;
+}
+
+/* ── SUBTITLE ── */
+.subtitle {
+  font-size: .68rem;
+  font-weight: 400;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #888;
+  margin-top: 10px;
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: fadeIn .7s ease .42s both;
+}
+
+/* ── QUESTION ── */
+.question {
+  font-size: .72rem;
+  font-weight: 300;
+  letter-spacing: .08em;
+  color: #999;
+  margin-bottom: 16px;
+  font-style: italic;
+  opacity: 0;
+  animation: fadeIn .7s ease .56s both;
+}
+
+/* ── BUTTON ROW ── */
+.links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeIn .7s ease .7s both;
+}
+
+/* Each link button */
+.link-btn {
+  display: inline-block;
+  padding: 10px 22px;
+  font-family: 'Barlow', sans-serif;
+  font-size: .68rem;
+  font-weight: 400;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #1A1A1A;
+  text-decoration: none;
+  border: 1px solid #1A1A1A;
+  background: transparent;
+  cursor: pointer;
+  /* transition */
+  transition:
+    background .22s ease,
+    color .22s ease,
+    transform .18s ease,
+    box-shadow .22s ease;
+  /* staggered entry per button */
+}
+.link-btn:hover {
+  background: #1A1A1A;
+  color: #F0EFEA;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.14);
+}
+.link-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Stagger hover underline — optional micro-detail */
+.link-btn::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s ease;
+}
